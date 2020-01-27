@@ -1,0 +1,55 @@
+1,2c1,2
+< execve("./syscalls", ["./syscalls"], [/* 59 vars */]) = 0
+< brk(NULL)                               = 0x215c000
+---
+> execve("/bin/echo", ["echo", "hello"], [/* 58 vars */]) = 0
+> brk(NULL)                               = 0x14a4000
+7c7
+< mmap(NULL, 346097, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7fae366db000
+---
+> mmap(NULL, 346097, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f3c88618000
+13,17c13,30
+< mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fae366da000
+< mmap(NULL, 3971488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7fae36141000
+< mprotect(0x7fae36301000, 2097152, PROT_NONE) = 0
+< mmap(0x7fae36501000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c0000) = 0x7fae36501000
+< mmap(0x7fae36507000, 14752, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7fae36507000
+---
+> mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3c88617000
+> mmap(NULL, 3971488, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f3c8807e000
+> mprotect(0x7f3c8823e000, 2097152, PROT_NONE) = 0
+> mmap(0x7f3c8843e000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c0000) = 0x7f3c8843e000
+> mmap(0x7f3c88444000, 14752, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f3c88444000
+> close(3)                                = 0
+> mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3c88616000
+> mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3c88615000
+> arch_prctl(ARCH_SET_FS, 0x7f3c88616700) = 0
+> mprotect(0x7f3c8843e000, 16384, PROT_READ) = 0
+> mprotect(0x606000, 4096, PROT_READ)     = 0
+> mprotect(0x7f3c8866d000, 4096, PROT_READ) = 0
+> munmap(0x7f3c88618000, 346097)          = 0
+> brk(NULL)                               = 0x14a4000
+> brk(0x14c5000)                          = 0x14c5000
+> open("/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+> fstat(3, {st_mode=S_IFREG|0644, st_size=2981280, ...}) = 0
+> mmap(NULL, 2981280, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f3c87da6000
+19,25d31
+< mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fae366d9000
+< mmap(NULL, 4096, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7fae366d8000
+< arch_prctl(ARCH_SET_FS, 0x7fae366d9700) = 0
+< mprotect(0x7fae36501000, 16384, PROT_READ) = 0
+< mprotect(0x600000, 4096, PROT_READ)     = 0
+< mprotect(0x7fae36730000, 4096, PROT_READ) = 0
+< munmap(0x7fae366db000, 346097)          = 0
+27,33c33,35
+< brk(NULL)                               = 0x215c000
+< brk(0x217d000)                          = 0x217d000
+< write(1, "Calling do_stuff()!\n", 20)   = 20
+< clock_gettime(CLOCK_PROCESS_CPUTIME_ID, {0, 1344284}) = 0
+< syscall_6295624(0x2, 0x7ffffd28cf30, 0x7fae36507780, 0, 0, 0) = -1 (errno 38)
+< clock_gettime(CLOCK_PROCESS_CPUTIME_ID, {0, 1366036}) = 0
+< write(1, "Back in main() again.\n", 22) = 22
+---
+> write(1, "hello\n", 6)                  = 6
+> close(1)                                = 0
+> close(2)                                = 0

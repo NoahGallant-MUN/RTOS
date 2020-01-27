@@ -1,0 +1,22 @@
+
+stuff.o:     file format elf64-x86-64
+
+
+Disassembly of section .text:
+
+0000000000000000 <do_stuff>:
+   0:	b8 00 00 00 00       	mov    $0x0,%eax
+   5:	cd 80                	int    $0x80
+   7:	c3                   	retq   
+
+Disassembly of section .data:
+
+0000000000000000 <message>:
+   0:	48                   	rex.W
+   1:	65 6c                	gs insb (%dx),%es:(%rdi)
+   3:	6c                   	insb   (%dx),%es:(%rdi)
+   4:	6f                   	outsl  %ds:(%rsi),(%dx)
+   5:	2c 20                	sub    $0x20,%al
+   7:	77 6f                	ja     78 <message+0x78>
+   9:	72 6c                	jb     77 <message+0x77>
+   b:	64 21 0a             	and    %ecx,%fs:(%rdx)
